@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAYTON | The Adventure Begins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --forest-green: #1B4332;
+            --trail-green: #2D6A4F;
+            --sky-blue: #A9D6E5;
+            --action-orange: #FF7043;
+            --off-white: #F8F9FA;
+            --text-dark: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* --- Custom Background Path --- */
+        .adventure-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            opacity: 0.5;
+        }
+
+        .trail-line {
+            position: absolute;
+            width: 4px;
+            background: repeating-linear-gradient(to bottom, var(--trail-green), var(--trail-green) 10px, transparent 10px, transparent 20px);
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* --- Layout Sections --- */
+        section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(27, 67, 50, 0.95)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            height: 100vh;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            color: var(--sky-blue);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* --- Card Styles --- */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--trail-green);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--action-orange);
+            margin-bottom: 20px;
+        }
+
+        .joke-card {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        /* --- Typography Spacing --- */
+        .highlight {
+            color: var(--action-orange);
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--trail-green);
+        }
+
+        /* --- Button --- */
+        .btn-go {
+            background: var(--action-orange);
+            color: white;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 112, 67, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        .btn-go:hover {
+            background: #e65100;
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 15px 25px rgba(255, 112, 67, 0.4);
+        }
+
+        /* --- Specific Section Accents --- */
+        .water-park { border-bottom-color: var(--sky-blue); }
+        .active-lifestyle { background: #eef5f2; }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 20px;
+            background: #1b1b1b;
+            color: white;
+            text-align: center;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 3rem; }
+            section { padding: 40px 15px; }
+            .card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="adventure-bg"></div>
+    <div class="trail-line"></div>
+
+    <section class="hero">
+        <div class="container" data-aos="zoom-out" data-aos-duration="1500">
+            <i class="fa-solid fa-mountain-sun icon-box" style="color: var(--sky-blue);"></i>
+            <h1>CLAYTON</h1>
+            <p>From confusion… to one of the best people I know.</p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section>
+        <div class="container card" data-aos="fade-right">
+            <div class="icon-box"><i class="fa-solid fa-compass"></i></div>
+            <h2 class="subtitle">The Name Game</h2>
+            <p style="font-size: 1.2rem;">
+                The first time I heard your name, I was confused.<br>
+                <strong>Clay… Ton?</strong><br>
+                What kind of name is that?<br><br>
+                It literally took me <span class="highlight">two days</span> just to remember it properly.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container card joke-card" data-aos="fade-left">
+            <div class="icon-box"><i class="fa-solid fa-pizza-slice"></i></div>
+            <h2>Pending Debts</h2>
+            <p>And that pizza you promised? <span class="highlight">Still waiting.</span></p>
+            <hr style="margin: 25px 0; opacity: 0.2;">
+            <p>Forget that — just come to the <span style="color: var(--sky-blue); font-weight: bold;">water park</span>.</p>
+            <p style="font-style: italic; font-size: 0.9rem; margin-top: 10px;">
+                I’ve already told them to add extra clean water just for you. 😉
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container card water-park" data-aos="fade-up">
+            <div class="icon-box"><i class="fa-solid fa-person-hiking"></i></div>
+            <h2>Real Talk</h2>
+            <p>Okay jokes aside…<br><strong>Thanks for everything, brother.</strong></p>
+            <p style="margin-top: 15px;">
+                You might be a bit of an idiot sometimes —<br>
+                but you’re <span class="highlight">my kind of idiot</span>.
+            </p>
+            <p style="margin-top: 15px; opacity: 0.8;">
+                And since you're Adarsh’s friend…<br>
+                well, that explains a lot already.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container" data-aos="zoom-in">
+            <h2 class="subtitle">Good Times</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                <div class="card" style="border-bottom-color: var(--action-orange);">
+                    <p>From random talks to stupid jokes...</p>
+                </div>
+                <div class="card">
+                    <p>From chilling moments to just enjoying simple things...</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2rem;">
+                Those moments actually meant a lot. <br>And honestly, <strong>I’ll remember them.</strong>
+            </p>
+        </div>
+    </section>
+
+    <section class="active-lifestyle">
+        <div class="container" data-aos="fade-up">
+            <div class="icon-box"><i class="fa-solid fa-route"></i></div>
+            <h2>Built for the Outdoors</h2>
+            <p style="font-size: 1.3rem; max-width: 600px; margin: 0 auto;">
+                You’ve always had that active, outdoors kind of energy. 
+                Whether it’s sports, trekking, or just exploring new places — <strong>that suits you.</strong>
+            </p>
+            <p class="highlight" style="margin-top: 20px; font-size: 1.5rem;">It’s just who you are.</p>
+        </div>
+    </section>
+
+    <section id="final-step">
+        <div class="container" data-aos="flip-up">
+            <h2 style="font-size: 2.5rem;">Pack Your Bags.</h2>
+            <p style="font-size: 1.2rem;">
+                Stop reading this and come to the water park. <br>
+                <strong>Adarsh is coming too.</strong><br>
+                Let’s make more memories.
+            </p>
+            <button class="btn-go" onclick="triggerAdventure()">Let’s Go →</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>"Same chaos. Same people. Just better memories ahead."</p>
+        <div style="margin-top: 20px; opacity: 0.5; font-size: 0.8rem;">
+            Adventure Awaits | 2026
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+
+        // CTA Interaction
+        function triggerAdventure() {
+            // Screen shift effect
+            document.body.style.transition = "transform 0.8s cubic-bezier(0.7, 0, 0.3, 1)";
+            document.body.style.transform = "translateX(100vw)";
+            
+            setTimeout(() => {
+                alert("The trail is set! See you at the water park, Clayton!");
+                document.body.style.transform = "translateX(0)";
+            }, 1000);
+        }
+
+        // Parallax effect for the trail line
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            document.querySelector('.trail-line').style.height = (scroll + window.innerHeight) + 'px';
+        });
+    </script>
+</body>
+</html>
